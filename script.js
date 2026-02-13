@@ -13,7 +13,8 @@ const storedProjects = localStorage.getItem("projects");
 
 const projects = storedProjects
   ? JSON.parse(storedProjects)
-  :defaultProjects;
+  : [...defaultProjects];
+
 
 function renderProjects() {
   container.innerHTML = "";
@@ -91,6 +92,7 @@ form.reset();
 form.style.display = "none";
 
 });
+
 
 
 
