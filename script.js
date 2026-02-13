@@ -11,9 +11,15 @@ const container = document.querySelector(".projects-container");
 
 const storedProjects = localStorage.getItem("projects");
 
-const projects = storedProjects
-  ? JSON.parse(storedProjects)
-  : [...defaultProjects];
+let projects;
+
+if (storedProjects) {
+  const parsed = JSON.parse(storedProjects);
+  projects = parsed.length > 0 ? parsed : [...defaultProjects];
+} else {
+  projects = [...defaultProjects];
+}
+
 
 
 function renderProjects() {
@@ -92,6 +98,7 @@ form.reset();
 form.style.display = "none";
 
 });
+
 
 
 
