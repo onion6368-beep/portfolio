@@ -1,26 +1,10 @@
-const defaultProjects = [
-  {
-    title: "Life Of",
-    description: "A reflective personal project",
-    image: "assets/images/lifeof.png"
-  }
-];
-
-
 const container = document.querySelector(".projects-container");
 
 const storedProjects = localStorage.getItem("projects");
 
-let projects;
-
-if (storedProjects) {
-  const parsed = JSON.parse(storedProjects);
-  projects = parsed.length > 0 ? parsed : [...defaultProjects];
-} else {
-  projects = [...defaultProjects];
-}
-
-
+const projects = storedProjects
+  ? JSON.parse(storedProjects)
+  :[];
 
 function renderProjects() {
   container.innerHTML = "";
@@ -98,28 +82,4 @@ form.reset();
 form.style.display = "none";
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
