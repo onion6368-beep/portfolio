@@ -164,3 +164,15 @@ p{
     position:relative;
     z-index:1;
 }
+html{
+
+    scroll-snap-type: y mandatory;
+
+}
+.intro-section{
+    min-height:100vh;
+    scroll-snap-align:start;
+}
+.main-section{
+    scroll-snap-align:start;
+}
