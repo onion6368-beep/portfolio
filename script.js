@@ -27,10 +27,12 @@ function renderProjects() {
           <div class="project-text">
             <h3>${project.title}</h3>
             <p>${project.description}</p>
+            <p class="full-description">${project.fullDescription}</p>
+            <a class="project-link" href="${project.Link}" target="_blank">View Project →</a>
           </div>
         </div>
       </div>
-    `;
+`;
     const deletebtn = document.createElement("button");
     deletebtn.textContent = "Delete";
 
@@ -43,6 +45,8 @@ function renderProjects() {
     card.appendChild(deletebtn);
     container.appendChild(card);
   });
+  document.body.offsetHeight; // Force browser to recalculate layout
+  window.dispatchEvent(new Event('resize')); // Tell scroll snap to remeasure
 }
 
 renderProjects();
@@ -57,19 +61,25 @@ addBtn.addEventListener("click", () => {
 
 const titleInput = document.getElementById("title");
 const descriptionInput = document.getElementById("description");
-const imageInput = document.getElementById("image")
+const imageInput = document.getElementById("image");
+const fullDescription =document.getElementById("full-description");
+const linkValue = document.getElementById("link");
 
 form.addEventListener("submit", (event) =>{
   event.preventDefault();
   const titleValue = titleInput.value;
   const descriptionValue = descriptionInput.value;
   const imageValue = imageInput.value;
+  const fullDes = fullDescription.value;
+  const linkVal = linkValue.value;
 
 
   const newProject = {
     title:titleValue,
     description:descriptionValue,
-    image:imageValue
+    image:imageValue,
+    fullDescription:fullDes,
+    Link:linkVal,
   };
 
 projects.push(newProject);
@@ -83,3 +93,15 @@ form.style.display = "none";
 
 });
 
+
+
+
+
+// const audio = document.getElementById("bg-music");
+
+// document.addEventListener("click", () => {
+//   audio.volume = 0.2;
+//   audio.play();
+// }, { once: true });
+
+// Add this to your JS
