@@ -83,7 +83,7 @@ p{
 .projects-container{
     display:flex;
     flex-direction:column;
-    gap:15rem;
+    gap:10rem;
 
 }
 .project-card{
@@ -136,7 +136,7 @@ p{
 }
 
 .project-card:hover {
-    transform: translateY(-4px) scale(1.2);
+    transform: translateY(-4px) scale(1.03);
     box-shadow: 0 4px 12px rgba(181, 140, 255, 0.4);
     z-index: 100;
 }
@@ -175,8 +175,8 @@ p{
     overflow: hidden;
     transition: opacity 0.3s ease, max-height 0.3s ease;
 }
-.project-card:hover .full-description,
-.project-card:hover .project-link {
+.project-card.expand .full-description,
+.project-card.expand .project-link {
     opacity: 1;
     max-height: 200px;
 }
@@ -204,4 +204,94 @@ p{
     transform:translateY(-4px);
     cursor:pointer;
     box-shadow: 0 4px 12px rgba(181, 140, 255, 0.4);
+}
+
+.popup-overlay{
+    position:fixed;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    opacity:0;
+    pointer-events:none;
+
+    background: rgba(0,0,0,.65);
+    backdrop-filter: blur(6px);
+}
+.popup-overlay.active{
+    opacity:1;
+    pointer-events:auto;
+    transition: opacity .25s ease;
+}
+.form-layer{
+    width:100%;
+    max-width:520px;
+    padding:32px;
+    border-radius:20px;
+    background: rgba(255,255,255,0.04);
+    transform:translateY(40px) scale(.96);
+    
+}
+.form-layer input,
+.form-layer textarea{
+  width:100%;
+  margin-bottom:14px;
+  padding:14px;
+  border-radius:12px;
+  background:#111118;
+  border:1px solid #2a2a3a;
+  color:#cfcfe6;
+}
+.form-layer button[type="submit"]{
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+
+  border:1px solid var(--accent-soft);
+  background: rgba(181,140,255,0.15);
+  color:var(--accent-soft);
+
+  cursor:pointer;
+  transition:.2s ease;
+}
+
+.form-layer button[type="submit"]:hover{
+  transform: translateY(-2px);
+  box-shadow:0 6px 20px rgba(181,140,255,0.35);
+}
+
+
+
+
+@media (max-width: 768px) {
+
+  body {
+    padding: 1rem;
+  }
+
+  .projects-container {
+    gap: 3rem;
+  }
+
+  .card-main {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card img {
+    height: auto;
+  }
+
+  .text-col {
+    height: auto;
+  }
+
+  .project-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  .form-layer {
+    width: 90%;
+    padding: 20px;
+  }
+
 }
