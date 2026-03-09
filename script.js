@@ -1,11 +1,27 @@
+//The comments are added by me not chatgpt and the reason is to satisfy my OCDs.
+
+
+//These are the stuff that retrives data from the DOM.
 const container = document.querySelector(".projects-container");
+const planks = document.querySelectorAll(".plank");
+const popup = document.getElementById("popup");
+const addbtn = document.getElementById("add-btn");
+const form = document.getElementById("project-form");
+const titleInput = document.getElementById("title");
+const descriptionInput = document.getElementById("description");
+const imageInput = document.getElementById("image");
+const fullDescription =document.getElementById("full-description");
+const linkValue = document.getElementById("link");
 
+
+//This block of code is used to store projects and check their existence.
 const storedProjects = localStorage.getItem("projects");
-
 const projects = storedProjects
   ? JSON.parse(storedProjects)
   :[];
 
+
+//This block of code build the actual cards.
 function renderProjects() {
   container.innerHTML = "";
 
@@ -15,7 +31,6 @@ function renderProjects() {
     container.appendChild(msg);
     return
   }
-
 
   projects.forEach((project,index) => {
     const card = document.createElement("div");
@@ -35,51 +50,40 @@ function renderProjects() {
       </div>
 `;
 
-    card.addEventListener("click" , (e) => {
-      if(e.target.closest("button,a"))return;
-      document.querySelectorAll(".project-card").forEach(c =>{
-        if(c!== card) c.classList.remove("expand");
-      })
-      card.classList.toggle("expand");
+
+  //This block of code makes it so that the buttons actually work.
+  
+  //Card exapansion control.
+  card.addEventListener("click" , (e) => {
+    if(e.target.closest("button,a"))return;
+    document.querySelectorAll(".project-card").forEach(c =>{
+      if(c!== card) c.classList.remove("expand");
     })
+    card.classList.toggle("expand");
+  })
 
+  //Delete button.
+  const deletebtn = document.createElement("button");
+  deletebtn.textContent = "Delete";
 
-    const deletebtn = document.createElement("button");
-    deletebtn.textContent = "Delete";
+  deletebtn.addEventListener("click", () => {
+    const id = card.dataset.id;
+    const updatedlist = projects.filter(p => p.id !== id);
 
-    deletebtn.addEventListener("click", () => {
-      const id = card.dataset.id;
-      const updatedlist = projects.filter(p => p.id !== id);
+    projects.length = 0;
+    projects.push(...updatedlist);
 
-      projects.length = 0;
-      projects.push(...updatedlist);
+    localStorage.setItem("projects",JSON.stringify(updatedlist));
+    renderProjects();
+  })
 
-      localStorage.setItem("projects",JSON.stringify(updatedlist));
-      renderProjects();
-    })
-
-    card.appendChild(deletebtn);
-    container.appendChild(card);
+  card.appendChild(deletebtn);
+  container.appendChild(card);
   });
-  document.body.offsetHeight;
-  window.dispatchEvent(new Event('resize')); 
 }
 
-renderProjects();
 
-const popup = document.getElementById("popup");
-const addbtn = document.getElementById("add-btn");
-const form = document.getElementById("project-form");
-
-
-
-
-const titleInput = document.getElementById("title");
-const descriptionInput = document.getElementById("description");
-const imageInput = document.getElementById("image");
-const fullDescription =document.getElementById("full-description");
-const linkValue = document.getElementById("link");
-
+//This block of code takes the info and then adds them to the actual cards
 form.addEventListener("submit", (event) =>{
   event.preventDefault();
   const titleValue = titleInput.value;
@@ -105,10 +109,9 @@ renderProjects();
 
 form.reset();
 popup.classList.remove("active");
-
 });
 
-
+//Form popup.
 addbtn.addEventListener("click", () =>{
   popup.classList.add("active");
 });
@@ -118,7 +121,19 @@ popup.addEventListener("click", (e) =>{
     popup.classList.remove("active");
   }
 });
+//Hero container animation
+const observer = new IntersectionObserver((entries) =>{
+  entries.forEach(entry =>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("animate");
+    }
+  });
+},{
+  threshold:0.8
+});
+planks.forEach(plank => observer.observe(plank));
 
 
-
-
+renderProjects();
+document.body.offsetHeight;
+window.dispatchEvent(new Event('resize')); 
