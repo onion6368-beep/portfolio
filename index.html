@@ -1,58 +1,61 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
         <meta charset="UTF-8">
         <title>Portfolio Dump</title>
         <link rel="stylesheet" href="style.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
 
-
-
     <!--Introduction to the page-->
     <body>
         <section class="intro-section">
             <div class="intro-content">
-                <h1 class="intro-heading">Life of _____________</h1>
-                <p class="intro-description">This is a little something I made for good old Kingshuk so when he's at his lowest, he has something to look back at</p>
+                <p class="intro-fun">SELECTED WORK</p>
+                <h1 class="intro-heading">Things I've <br><span class="accent">Built</span> & made</h1>
+                <p class="intro-description">A curated collection of projects — click any card to learn more.</p>
             </div>
             <div class="scroll-hint">↓</div>
             <audio id="bg-music" loop>
                 <source src="poorartistt-sad-slow-orchestral-music-no-copyright-453246.mp3">
             </audio>
         </section>
+
     <!-- Main section-->
-    <div class="main-section">
-        <section class="hero">
-            <div class="container">
-                <h2>Something to cheer you on</h2>
-                <p>Listen dude i don't know how or where you are,...but look this is the first thing you ever made,Ik you never liked coding and was practically forced into it.None of your peers encouraged you whenever you did something but you still went for it,.....well not beacuse you started liking it,because you wanted them to know that you are not someone they can look down on.</p>
-            </div>
-        </section>
-
-        
-        <section class="projects-section">
-            <div class="container">
-                <div class="projects-container"></div>
-                
-            </div>
-        </section>
-
-        <button id="add-btn">Add More</button>
-        <div class="popup-overlay" id="popup">
-            <section class="form-layer">
-                <div class="form-wrapper">
-                    <form id="project-form">
-                        <input type="text" id="title" placeholder="Enter text" required>
-                        <input type="text" id="image" placeholder="Enter path or Url" required>
-                        <textarea id="description" placeholder="Enter text" required></textarea>
-                        <textarea id="full-description" placeholder="Enter text" required></textarea>
-                        <input type="url" id="link" placeholder="https://......" required>
-                        <button type="submit">Submit</button>
-                    </form>
-                </div>
-            </section>
+    <section class="hero">
+        <div class="plank-container">
+            <div class="plank plank-1"><span class="plank-heading">ABOUT ME</span></div>
+            <div class="plank plank-2"><span class="plank-text">CS student from [city].</span></div>
+            <div class="plank plank-3"><span class="plank-text">I like building [type of things].</span></div>
+            <div class="plank plank-4"><span class="plank-text">Outside of code I'm into [hobby].</span></div>
+            <div class="plank plank-5"><span class="plank-text">Still figuring out where I'm headed, but I'm building things along the way.</span></div>
         </div>
+    </section>
+
+    
+    <section class="projects-section">
+        <div class="container">
+            <div class="projects-container"></div>
+        </div>
+    </section>
+    
+    <button id="add-btn">Add More</button>
+    <div class="popup-overlay" id="popup">
+
+        <!--Form layer ahead-->
+        <section class="form-layer">
+            <div class="form-wrapper">
+                <form id="project-form">
+                    <input type="text" id="title" placeholder="Enter text" required>
+                    <input type="text" id="image" placeholder="Enter path or Url" required>
+                    <textarea id="description" placeholder="Enter text" required></textarea>
+                    <textarea id="full-description" placeholder="Enter text" required></textarea>
+                    <input type="url" id="link" placeholder="https://......" required>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </section>
     </div>
     <script src="script.js"></script>
     </body>
