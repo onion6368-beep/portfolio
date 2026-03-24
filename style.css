@@ -389,9 +389,32 @@ h1,h2,h3{
     letter-spacing: 0.1em;
 }
 @media (max-width: 768px) {
-    body { padding: 0rem; }
-    .projects-container { gap: 3rem; }
-    .project-card { grid-template-columns: 1fr; }
-    .project-card:hover .project-img img { transform: none; }
-    .about-card { padding: 2rem; }
+
+    body {
+        padding: 0;
+    }
+
+    .projects-section {
+        padding: 3rem 1rem; 
+    }
+
+    .projects-inner {
+        max-width: 100%;
+        margin: 0;
+    }
+
+    .project-card {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .project-img {
+        border-radius: 1rem;
+    }
+
+    .project-title {
+        font-size: 1.5rem;
+    }
+
 }
